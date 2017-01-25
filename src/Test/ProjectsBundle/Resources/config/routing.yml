@@ -1,3 +1,12 @@
-test_projects_homepage:
-    path:     /
-    defaults: { _controller: TestProjectsBundle:Default:index }
+test_projects_products:
+    resource: "@TestProjectsBundle/Controller/ProductsController.php"
+    type:     annotation
+
+test_projects_categories:
+    resource: "@TestProjectsBundle/Controller/CategoriesController.php"
+    type:     annotation
+
+test_projects_users:
+    prefix: /
+    resource: "@TestProjectsBundle/Controller/UsersController.php"
+    type:     annotation

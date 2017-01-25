@@ -1,7 +1,7 @@
-test_projects:
+test_projects_public:
     resource: "@TestProjectsBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix: /
 
-#app:
-#    resource: "@AppBundle/Controller/"
-#    type:     annotation
+test_projects_api:
+    resource: "@TestProjectsBundle/Resources/config/routing_api.yml"
+    prefix: /api
