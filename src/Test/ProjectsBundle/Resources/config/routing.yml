@@ -1,0 +1,3 @@
+test_projects_homepage:
+    path:     /
+    defaults: { _controller: TestProjectsBundle:Default:index }
