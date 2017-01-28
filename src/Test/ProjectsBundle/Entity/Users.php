@@ -94,4 +94,9 @@ class Users
     {
         return $this->password;
     }
+
+    function __toString()
+    {
+        return $this->getLogin();
+    }
 }
