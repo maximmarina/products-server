@@ -127,6 +127,7 @@ class ProductsRESTController extends VoryxController
 
         try {
             $em = $this->getDoctrine()->getManager();
+            $request->request->set('user', $entity->getUser()->getId());
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(get_class(new ProductsType()), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
