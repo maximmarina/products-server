@@ -3,6 +3,7 @@
 namespace Test\ProjectsBundle\Controller;
 
 use Test\ProjectsBundle\Entity\Products;
+use Test\ProjectsBundle\Entity\User;
 use Test\ProjectsBundle\Form\ProductsType;
 
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -39,12 +40,9 @@ class ProductsRESTController extends VoryxController
      */
     public function getAction(Products $entity)
     {
-        if($this->isGranted(IS_AUTHENTICATED_FULLY)){
-            $token = $this->get('fos_oauth_server.access_token_manager')->findTokenByToken($this->get('security.token_storage')->getToken()->getToken());
-
-            if ($token->getUser()->getId() !== $entity->getUser()->getId()) {
-                throw new AccessDeniedException();
-            }
+        if ($this->getUser()->getId() !== $entity->getUser()->getId())
+        {
+            throw new AccessDeniedException();
         }
 
         return $entity;
@@ -70,6 +68,7 @@ class ProductsRESTController extends VoryxController
             $limit = $paramFetcher->get('limit');
             $order_by = $paramFetcher->get('order_by');
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
+            $filters['user'] = $this->getUser()->getId();
 
             $em = $this->getDoctrine()->getManager();
             $entities = $em->getRepository('TestProjectsBundle:Products')->findBy($filters, $order_by, $limit, $offset);
@@ -100,6 +99,7 @@ class ProductsRESTController extends VoryxController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $entity->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -121,6 +121,10 @@ class ProductsRESTController extends VoryxController
      */
     public function putAction(Request $request, Products $entity)
     {
+        if($this->getUser()->getId() !== $entity->getUser()->getId()){
+            throw new AccessDeniedException();
+        }
+
         try {
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
@@ -150,6 +154,10 @@ class ProductsRESTController extends VoryxController
      */
     public function patchAction(Request $request, Products $entity)
     {
+        if($this->getUser()->getId() !== $entity->getUser()->getId()){
+            throw new AccessDeniedException();
+        }
+
         return $this->putAction($request, $entity);
     }
     /**
@@ -164,6 +172,10 @@ class ProductsRESTController extends VoryxController
      */
     public function deleteAction(Request $request, Products $entity)
     {
+        if($this->getUser()->getId() !== $entity->getUser()->getId()){
+            throw new AccessDeniedException();
+        }
+
         try {
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
