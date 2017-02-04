@@ -22,7 +22,8 @@ class ProductsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Test\ProjectsBundle\Entity\Products'
+            'data_class' => 'Test\ProjectsBundle\Entity\Products',
+            'csrf_protection'   => false,
         ));
     }
 

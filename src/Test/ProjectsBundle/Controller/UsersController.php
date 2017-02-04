@@ -2,10 +2,12 @@
 
 namespace Test\ProjectsBundle\Controller;
 
+use Symfony\Component\Security\Core\Role\SwitchUserRole;
 use Test\ProjectsBundle\Entity\Users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Test\ProjectsBundle\TestProjectsBundle;
 
 /**
  * User controller.

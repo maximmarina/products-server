@@ -1,7 +1,17 @@
+test_projects_products_api:
+    resource: "@TestProjectsBundle/Controller/ProductsRESTController.php"
+    type:   rest
+    prefix:   /api
+
 test_projects_public:
     resource: "@TestProjectsBundle/Resources/config/routing.yml"
     prefix: /
 
-test_projects_api:
-    resource: "@TestProjectsBundle/Resources/config/routing_api.yml"
-    prefix: /api
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"

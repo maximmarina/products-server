@@ -7,6 +7,5 @@ test_projects_categories:
     type:     annotation
 
 test_projects_users:
-    prefix: /
     resource: "@TestProjectsBundle/Controller/UsersController.php"
     type:     annotation

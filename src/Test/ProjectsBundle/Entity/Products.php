@@ -43,9 +43,9 @@ class Products
     private $photoLink;
 
     /**
-     * @var \Users
+     * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -149,11 +149,11 @@ class Products
     /**
      * Set user
      *
-     * @param \Test\ProjectsBundle\Entity\Users $user
+     * @param \Test\ProjectsBundle\Entity\User $user
      *
      * @return Products
      */
-    public function setUser(\Test\ProjectsBundle\Entity\Users $user = null)
+    public function setUser(\Test\ProjectsBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -163,7 +163,7 @@ class Products
     /**
      * Get user
      *
-     * @return \Test\ProjectsBundle\Entity\Users
+     * @return \Test\ProjectsBundle\Entity\User
      */
     public function getUser()
     {
